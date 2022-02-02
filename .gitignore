@@ -6,3 +6,5 @@ TODO.md
 *__pycache__*
 *.svg
 /header-video
+build-*/
+.vscode

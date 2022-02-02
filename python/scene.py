@@ -5,6 +5,7 @@ from manifolds import Ray2f, Shape
 from misc import *
 from path import Path
 from draw import *
+from ipdb import set_trace
 
 class Scene:
     def __init__(self, shapes):
@@ -73,9 +74,17 @@ class Scene:
         return it
 
     def sample_start_position(self, u):
-        it = self.cpp_scene.start_shape().sample_position(u)
-        it.eta = it.shape.eta
-        it.n_offset = np.array([0, 1])
+        try:
+            shape = self.cpp_scene.start_shape()
+            it = shape.sample_position(u)
+            it.eta = it.shape.eta
+            it.n_offset = np.array([0, 1])
+        except Exception as e:
+            print(e)
+            print(shape)
+            
+            set_trace()
+
         return it
 
     def sample_end_position(self, u):

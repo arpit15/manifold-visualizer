@@ -70,6 +70,7 @@ Interaction Scene::ray_intersect(const Ray2f &ray_) const {
 
 void Scene::draw(NVGcontext *ctx) const {
     for (size_t k = 0; k < m_draw_shapes.size(); ++k) {
+        // std::cout << k << " - " << m_draw_shapes[k]->to_string() << std::endl;
         m_draw_shapes[k]->draw(ctx);
     }
 }

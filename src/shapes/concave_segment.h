@@ -203,10 +203,18 @@ public:
         Point2f p0 = 0.5f*(ap + bp),
                 p1 = p0 - Vector2f(0.f, gradient_start),
                 p2 = p1 - Vector2f(0.f, gradient_width);
+
         auto fill_grad   = nvgLinearGradientS(ctx, p1[0], p1[1], p2[0], p2[1],
                                               fill_color, COLOR_TRANSPARENT);
         auto stroke_grad = nvgLinearGradientS(ctx, p1[0], p1[1], p2[0], p2[1],
                                               nvgRGBA(0, 0, 0, 255), COLOR_TRANSPARENT);
+
+        // // fully filled shape
+        // auto fill_grad   = nvgLinearGradientS(ctx, p1[0], p1[1], p2[0], p2[1],
+        //                                       fill_color, fill_color);
+        // auto stroke_grad = nvgLinearGradientS(ctx, p1[0], p1[1], p2[0], p2[1],
+        //                                       nvgRGBA(0, 0, 0, 255), nvgRGBA(0, 0, 0, 255));
+
         nvgFillPaint(ctx, fill_grad);
         nvgStrokePaint(ctx, stroke_grad);
 
@@ -229,9 +237,9 @@ public:
 
         // Rest of shape
         Point2f d_left = c_left - Vector2f(corner_radius, 0.f),
-                e_left = d_left - Vector2f(0.f, 1.f),
+                e_left = d_left - Vector2f(0.f, 5.f),
                 d_right = c_right + Vector2f(corner_radius, 0.f),
-                e_right = d_right - Vector2f(0.f, 1.f);
+                e_right = d_right - Vector2f(0.f, 5.f);
 
         nvgMoveToS(ctx, d_right[0], d_right[1]);
         nvgLineToS(ctx, e_right[0], e_right[1]);
@@ -241,6 +249,7 @@ public:
         if (abs(beta_left - Pi) > Epsilon)
             nvgArcS(ctx, c_left[0], c_left[1], corner_radius, Pi, beta_left, NVG_CCW);
         nvgArcS(ctx, c_main[0], c_main[1], arc_radius, 1.5f*Pi - alpha, 1.5f*Pi + alpha, NVG_CW);
+        // nvgArcS(ctx, c_main[0], c_main[1], arc_radius, 1.5f*Pi - alpha, 1.5f*Pi + alpha, NVG_CW);
         if (abs(beta_right) > Epsilon)
             nvgArcS(ctx, c_right[0], c_right[1], corner_radius, beta_right, 0.f, NVG_CCW);
 
@@ -266,7 +275,7 @@ protected:
     float m_phi_0, m_phi_1;
 
 public:
-    float gradient_start = 0.08f,
+    float gradient_start = 0.5f,
           gradient_width = 0.03f;
     float corner_radius = 0.02f;
 };

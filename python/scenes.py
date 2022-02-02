@@ -3,9 +3,12 @@ from scene import Scene
 from manifolds import BezierCurve, Circle, ConcaveSegment, ConvexSegment, LinearSegment, Shape
 from nanogui import nanovg as nvg
 from bezier_shapes import *
+from horse_shoe_scene import horse_shoe_scene
 
 def create_scenes():
     scenes = []
+
+    scenes.append(horse_shoe_scene())
 
 
     # SIMPLE REFLECTION
@@ -70,7 +73,8 @@ def create_scenes():
     s2.type = Shape.Type.Diffuse
     s2.end = True
 
-    s3 = ConcaveSegment([0.45, 1], [-0.45, 1], 2.0)
+    # s3 = ConcaveSegment([0.45, 1], [-0.45, 1], 2.0)
+    s3 = ConcaveSegment([0.25, 1], [-0.25, 1], 0.5)
     s3.type = Shape.Type.Reflection
     s3.first_specular = True
 
@@ -84,6 +88,7 @@ def create_scenes():
     scene.offset = [0, -0.75]
     scene.zoom = 0.93
     scenes.append(scene)
+    # scenes.insert(0, scene)
 
 
     # REFLECTIVE SPHERE
@@ -118,7 +123,7 @@ def create_scenes():
     s1.type = Shape.Type.Diffuse
     s1.end = True
 
-    s2 = Circle([0.0, 0.0], 1.0)
+    # s2 = Circle([0.0, 0.0], 1.0)
     s2 = ConvexSegment([-0.9, 0], [0.9, 0], 0.9, True)
     s2.type = Shape.Type.Refraction
     s2.eta = 2.0
@@ -167,7 +172,6 @@ def create_scenes():
     scene.zoom = 0.75
     scene.n_bounces_default = 2
     scenes.append(scene)
-
 
     # WAVY REFLECTION
 

@@ -66,7 +66,7 @@ enoki_set_compile_flags()
 enoki_set_native_flags()
 
 # Add nanogui
-set(NANOGUI_BUILD_EXAMPLES ON  CACHE BOOL " " FORCE)
+set(NANOGUI_BUILD_EXAMPLES OFF  CACHE BOOL " " FORCE)
 set(NANOGUI_BUILD_PYTHON   ON  CACHE BOOL " " FORCE)
 set(NANOGUI_INSTALL        OFF CACHE BOOL " " FORCE)
 set(NANOGUI_PYBIND11_DIR   "${CMAKE_CURRENT_SOURCE_DIR}/ext/pybind11")
